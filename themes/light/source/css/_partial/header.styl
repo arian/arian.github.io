@@ -1,0 +1,39 @@
+
+#header
+  background #fafafa
+  border-bottom 2px solid #ccc
+
+  h1 a
+    color #4086E6
+    font-size 40px
+    text-decoration none
+
+  nav ul
+    list-style none
+
+    a
+      color #4086E6
+      display block
+      padding 3px 10px
+      text-decoration none
+
+      &:hover
+        text-decoration underline
+
+@media screen and (min-width: 600px)
+  #header
+    overflow hidden
+
+    h1
+      float left
+
+    nav
+      float right
+
+      ul li
+        float left
+
+        a
+          padding 17px
+          &:last-child
+            padding-right 0
