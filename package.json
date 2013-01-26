@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "node-watch": "0.2",
-    "hexo": "0.5"
+    "hexo": "0.5",
+    "hexo-generator-feed": "0.0.8"
   }
 }
