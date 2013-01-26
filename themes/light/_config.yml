@@ -2,7 +2,7 @@ menu:
   Home: /
   Archives: /archives
 
-widgets: 
+widgets:
 - search
 - category
 - tag
@@ -25,5 +25,5 @@ addthis:
 
 fancybox: true
 
-google_analytics:
+google_analytics: UA-1054666-13
 rss:
