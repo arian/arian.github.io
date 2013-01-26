@@ -25,9 +25,9 @@ updated GitHub repositories. This was written already in PHP, running on very
 cheap-ass shared hosting, so I made a little script that it generates an
 `index.php` file, which actually isn't static.
 
-Like with a lot of my work, I just put this blog on GitHub, so if you see a
-typo, you don't have to put it in the comments, but you can send me a pull
-request!
+Like with a lot of my work, I just put this
+[blog on GitHub](https://github.com/arian/blog), so if you see a typo, you
+don't have to put it in the comments, but you can send me a pull request!
 
 Some remarkable facts during the production of this blog:
 
