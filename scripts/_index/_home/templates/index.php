@@ -40,9 +40,16 @@
 		<a href="http://github.com/arian">github.com/arian</a>
 	</h1>
 	<div id="github">
+		<?php
+		$featured = array(
+			'CoverJS', 'wrapup', 'prime', 'mootools-core', 'elements'
+		);
+		?>
 		<ul><?php foreach ($this->repos as $repo): ?>
 
-			<li><a href="<?php echo $repo['html_url'] ?>"><?php echo $repo['name']; ?></a></li><?php
+			<li><a href="<?php echo $repo['html_url'] ?>"<?php
+				echo in_array($repo['name'], $featured) ? ' class="featured"' : ''
+			?>><?php echo $repo['name']; ?></a></li><?php
 			endforeach; ?>
 
 		</ul>
