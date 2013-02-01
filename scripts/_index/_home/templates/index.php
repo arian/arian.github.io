@@ -5,7 +5,7 @@
 		What I&#39;ve got to say <a href="http://twitter.com/astolwijk">@astolwijk</a>
 	</h1>
 	<div id="twitter">
-		<?php if (empty($this->tweets)): ?>
+		<?php if (!empty($this->tweets)): ?>
 		<ul><?php $i = 0; foreach ($this->tweets as $tweet): if ($i++ > 4){ break; } ?>
 
 			<li><a href="http://twitter.com/astolwijk/status/<?php echo $tweet['id_str'] ?>"><?php echo $tweet['text']; ?></a></li><?php
