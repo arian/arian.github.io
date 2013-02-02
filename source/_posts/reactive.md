@@ -7,7 +7,7 @@ comments: yes
 Most programming languages or techniques nowadays are sequential. When
 executing a statement `c = a + b`, `c` is the result of the addition of the
 current values of `a` and `b`. If either one of those variables change their
-values, `c` is not changed.
+value, `c` is not changed.
 
 ```js
 var a = 5;
@@ -39,19 +39,20 @@ changed too (if we neglect the propagation delay). You could say the output
 reacts on the input.
 
 When some NAND gates are *wired* together, complete ALUs (Arithmetic Logic
-Units), or even processors, can be built. At some point those logic
+Units), or even processors, can be built. At some point, those logic
 networks become too difficult to create manually by just creating and solving
-some Karnaugh maps. That is why certain tools are created, to simulate and
-program logical networks. One of those is *VHDL*, which is a Hardware
-Description Language. How it works is pretty similar to physically wiring
-components together.
+some Karnaugh maps. That is why certain tools are created, to simulate,
+synthesize and program logical networks. One of those is *VHDL*, which is a
+Hardware Description Language. How it works is pretty similar to physically
+wiring components together.
 
 ## VHDL
 
 In VHDL a component like a NAND consists out of two parts. The first part is
 called the `ENTITY`, where the input and output ports are defined. The
 second part is the `ARCHITECTURE`, or usually called the behavior. This defines
-the logic of the component.
+the logic of the component. For example see this implementation of an `AND`
+gate:
 
 ```
 -- this is the entity
@@ -74,10 +75,10 @@ end architecture RTL;
 
 Eventually all those components can be wired together in VHDL. Now when all
 those lines exist between components, what should happen when a line changes?
-To solve this, a `SIGNAL` statement can be defined, which connects some lines,
-so they can be used in the `PROCESS`
-and when a line changes the behavior part is executed again. This causes that
-all changes are propagated through the network.
+To solve this, a `SIGNAL` statement can be defined, which connects lines to the
+component so they can be used in the `PROCESS`. If a line changes, the behavior
+part is executed again. This causes that all changes are propagated through the
+network.
 
 ## Back to our world: JavaScript
 
@@ -157,7 +158,7 @@ code:
 });
 ```
 
-With this put in place, we could add an event with `addEventRs`, just like
+With this put in place, we could add an event with `addEventRx`, just like
 `.addEvent` (if you're used to MooTools) or `.on` (some other libs). The
 returned value is a `rx` object.
 
@@ -167,7 +168,7 @@ var checkboxes = $$('input[type="checkbox"]').addEventRx('click', function(r){
 });
 ```
 
-This code returns an array (because of `$$`), of rx objects. Those objects can
+This code returns an array (because of `$$`) of rx objects. Those objects can
 be wired into somewhere else, for example into a component that indicates if
 the first two checkboxes are checked:
 
@@ -208,6 +209,6 @@ and complex (front-end) UI applications. Some module could export a `rx` object
 that keeps the state of some component (say a list of messages). Another part
 of the page (maybe somewhere in a toolbar), displays the number of messages.
 This toolbar could grab the loose wire from the messages component, by requiring
-the messages `rx` object, and wire it into the toolbar, so if the state of the
+the messages `rx` object, and wire it into the toolbar. If the state of the
 messages is changed, this state is automatically propagated to the messages
 count in the toolbar.
