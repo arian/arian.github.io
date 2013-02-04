@@ -18,6 +18,8 @@ a = 20;
 console.log(c); // still logs 15
 ```
 
+<!-- more -->
+
 ## Electronics
 
 In electronics however, this isn't usually the case. The "drain" of a FET
