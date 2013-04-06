@@ -2,3 +2,4 @@
 node_modules
 .cache
 scripts/_index/_home/twitterAPISecret.php
+db.json
