@@ -15,6 +15,8 @@ dynamically determine how long a program would run: profit!
 
 I made a prototype that can be viewed on [GitHub](https://github.com/arian/ptrace).
 
+<!-- more -->
+
 ptrace
 ------
 
