@@ -29,7 +29,7 @@ class Tweets {
 
 		$tmhOAuth = new tmhOAuth($this->config);
 
-		$code = $tmhOAuth->request('GET', $tmhOAuth->url('1/statuses/user_timeline', 'json'));
+		$code = $tmhOAuth->request('GET', $tmhOAuth->url('1.1/statuses/user_timeline', 'json'));
 
 		if ($code == 200){
 			$response = $tmhOAuth->response['response'];
