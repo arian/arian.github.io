@@ -6,7 +6,7 @@ var htmlFile = __dirname + "/../public/index.html";
 var phpFile = __dirname + "/../public/index.php";
 
 hexo.on('generateAfter', function() {
-  exec("cp -R ./_index/* ../public", {
+  exec("cp -R ../_index/* ../public", {
     cwd: __dirname
   }, function(err) {
     if (err) throw err;
