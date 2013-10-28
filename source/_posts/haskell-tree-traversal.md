@@ -108,6 +108,38 @@ the next level. The `leftAndRightNodes` returns a list of the left and/or right
 nodes of a node. These are concatenated with the other child nodes, and then
 recursively called with `tbf`, until all levels of the tree are traversed.
 
+### It works!
+
+So now we have two functions, `traverseDF` and `traverseBF`, so what are the
+results. So lets define some tree first:
+
+```haskell
+createTree = Node 'A'
+                (Node 'B'
+                    (Node 'C' Empty Empty)
+                    (Node 'D' Empty Empty)
+                )
+                (Node 'E'
+                    (Node 'F' Empty Empty)
+                    (Node 'G' Empty (Node 'H'
+                        (Node 'I' Empty Empty)
+                        Empty
+                    ))
+                )
+```
+
+And run this in GHCI:
+
+```haskell
+> let x = createTree
+> traverseDF x
+"ABCDEFGHI"
+> traverseBF x
+"ABECDFGHI"
+```
+
+And indeed, these are the results we would expect!
+
 ## Conclusion
 
 Now I won't forget which algorithm is which, and I improved my Haskell skills a
