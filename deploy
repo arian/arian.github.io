@@ -1,0 +1,3 @@
+#! /bin/bash
+
+ftp -n ftp.aryweb.nl < deploy_ftp

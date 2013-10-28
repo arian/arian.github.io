@@ -3,3 +3,5 @@ node_modules
 .cache
 _index/_home/twitterAPISecret.php
 db.json
+deploy_ftp
+ftp_login
