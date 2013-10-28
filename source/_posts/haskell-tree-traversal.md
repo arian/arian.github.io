@@ -11,7 +11,7 @@ about Haskell.
 Today I was wondering what Breadth First traversal was. Of course I should
 know this and it's stupid I forgot. To make sure I wouldn't forget in the
 future I made a little exercise to improve my Haskell skills, and to make sure
-I wouldn't forget the Bread First algorithm anymore.
+I wouldn't forget the Breadth First algorithm anymore.
 
 <!-- more -->
 
