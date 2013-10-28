@@ -1,3 +1,6 @@
 [submodule "scripts/_index/_home/lib/tmhOAuth"]
-	path = scripts/_index/_home/lib/tmhOAuth
+	path = _index/_home/lib/tmhOAuth
+	url = git://github.com/themattharris/tmhOAuth.git
+[submodule "_index/_home/lib/tmhOAuth"]
+	path = _index/_home/lib/tmhOAuth
 	url = git://github.com/themattharris/tmhOAuth.git
