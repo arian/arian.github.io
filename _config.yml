@@ -80,3 +80,12 @@ plugins:
 ## Docs: http://zespia.tw/hexo/docs/deploy.html
 deploy:
   type:
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: false
+  smartLists: true
+  smartypants: false
