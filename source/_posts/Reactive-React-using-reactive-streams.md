@@ -1,5 +1,5 @@
 title: "Reactive ReactJS: improving data flow using reactive streams"
-date: 2015-02-13 13:31:20
+date: 2015-02-16 13:31:20
 tags: [reactjs, rx, baconjs, flux]
 comments: yes
 ---
@@ -18,15 +18,16 @@ easing these shortcomings.
 
 ## Reactive Streams
 
-The mathematical definition of Functional Reactive Programming (FPR), defines
-a value *over time*, so past, present and future. In reality we have to make a
-few simplifications and changes to make it work in practice.
+The mathematical definition of Functional Reactive Programming (FPR), defines a
+value *over time*, [so past, present and future][FRP]. In reality we have to
+make a few simplifications and changes to make it work in practice, so lets
+just call it *reactive streams*.
 
 In JavaScript the two most well known implementations of this paradigm are
 [RxJS][] and [BaconJS][]. There are a few differences, but both work fine.
 
-The basic idea is an Event Emitter but then a lot better! Let me give you an
-example of a simple Event Emitter:
+The basic idea is like an Event Emitter but then a lot better! Let me give you
+an example of a simple Event Emitter:
 
 ```js
 const emitter = new EventEmitter();
@@ -70,15 +71,15 @@ combine, merge or zip streams, among others:
 // two streams, that will emit the values in the arrays separately
 const a = Bacon.fromArray([1,2,3]);
 const b = Bacon.fromArray([4,5,6,7]);
-//
+
 // zip the nth item from each stream
 a.zip(b, (x, y) => [x, y]).log()
 // logs: [1,4] [2,5] [3,6]
-//
+
 // combine the latest values from each stream
 a.combine(b, (x, y) => [x, y]).log()
 // logs: [1,4] [2,5] [3,6] [3,7]
-//
+
 // emit all values from either stream
 a.merge(b).log()
 // logs: 1 2 3 4 5 6 7
@@ -87,14 +88,14 @@ a.merge(b).log()
 Another very cool and useful feature is `scan`. This operation is like a `fold`
 or `reduce` on a list, but then over time.
 
-```
+```js
 Bacon.fromEventTarget(document.body, 'click')
-	.scan(0, (acc, event) => acc + 1)
-	.log();
+  .scan(0, (acc, event) => acc + 1)
+  .log();
 ```
 
 This logs the total number of clicks each time the user clicks the document.
-The `scan` functionality, together with *join patterns* are a very powerful
+The `scan` functionality, together with *join patterns*, is a very powerful
 method to keep the current state of something.
 
 ## Using Reactive Streams for Application State
@@ -102,7 +103,7 @@ method to keep the current state of something.
 Instead of a Flux Store, the data source can be a stream. Basically the React
 Component doesn't listen to a Flux event emitter, it subscribes to the stream.
 
-This can look like:
+This could look like:
 
 ```js
 // Create a dummy "time" stream
@@ -114,7 +115,7 @@ const time = Bacon.fromBinder(observer => {
     clearTimeout(timer);
   };
 });
-//
+
 // The view, that subscribes to the stream
 const Timer = React.createClass({
   getInitialState: function() {
@@ -136,24 +137,27 @@ const Timer = React.createClass({
 ```
 
 The `componentDidMount` and the `componentWillUnmount` can potentially be
-abstracted away in a mixin.
+abstracted away in a mixin. Then what's left is the stream, an observable, that
+emits a new value each second. On the receiving end of the stream, the state of
+component is set, which triggers a re-render.
 
 ### Todo Application
 
-Of course a simple timer isn't very interesting, so let's make a Todo app.
+Of course a simple timer isn't very interesting, so let's make a Todo App.
 One important thing that is required is that it has to synchronize with the
 server. The server is using some REST-like API, imagine something like this:
 
 - `GET` `/list` responds with a list of todos
-- `POST` `/list/add` adds a new todo, responds with the saved item
-- `POST` `/list/{id}` updates an item, responds with updated item.
-- `DELETE` `/list/{id}` removes an item
+- `PUT` `/list/item` adds a new todo, responds with the saved item
+- `POST` `/list/item/{id}` updates an item, responds with updated item.
+- `DELETE` `/list/item/{id}` removes an item
 
 Now to build our application state streams, we'll create a stream that fetches
-the initial data from the server. Besides that there are three streams coming
-from the GUI that are user actions, if the user wants to add, update or remove
-an item. These actions need to fire a server request, after which the list the
-renderer is showing needs to be updated.
+the initial data from the server. Besides that there, are three streams coming
+from the GUI that are user actions. If the user wants to add, update or remove
+an item, an action is pushed to the corresponding stream. These actions need to
+fire a server request. After such a request the list, that is rendered, needs
+to be updated as well.
 
 Creating the first stream to fetch all items from the server is pretty
 straight-forward:
@@ -165,6 +169,9 @@ const initialList = Bacon.fromPromise(fetch('/list'));
 If we use this stream to render the view, we will see the list of todos.
 
 ```js
+const {div} = React.DOM;
+const Item = React.createFactory(require('./Item'));
+
 const List = React.createClass({
   getInitialState: function() {
     return {items: []};
@@ -176,32 +183,39 @@ const List = React.createClass({
     this._unsubscribe();
   },
   render: function() {
-    const items = this.state.items.map(item => <Item item={item} />);
-    return <div>{items}</div>;
+    const items = this.state.items.map(item => Item({item: item, key: item.id}));
+    return div(null, items);
   }
 });
 ```
 
-However we cannot update it in any way yet.
+This renders the list of items that was received from the server, however we
+cannot update it in any way yet, unless we do a full page refresh.
 
-For this we have to use a *bus* (in Rx it's a *subject*):
+Somehow we need to handle the user actions, and process them in some way. To do
+this, we have to use a *bus* (in Rx it's a *subject*):
 
 ```js
 const removeItemClicked = new Bacon.Bus();
 
 // somewhere else in your components
+const {div, button} = React.DOM;
 const Item = React.createClass({
   onRemove: function() {
-    removeItemClicked.push(this.props.id);
+    removeItemClicked.push(this.props.item.id);
   },
   render: function() {
-    return <button onClick={this.onRemove}>remove</button>;
+    return div(null,
+      this.props.item.title,
+      button({onClick: this.onRemove}, 'remove')
+    );
   }
 });
 ```
 
-Now we can subscribe to the `editItemClicked` stream, which will emit each time
-the user clicks the edit button of an item. That wont change anything yet!
+Now we can subscribe to the `removeItemClicked` stream, which will emit each
+time the user clicks the remove button of an item. But that won't change
+anything yet!
 
 To actually do this, we can use the `flatMap(f)` method. This will execute
 function `f` each time with a value. The function `f` can return another
@@ -210,11 +224,11 @@ form the inside stream. To illustrate this, lets look at an example with just
 arrays:
 
 ```js
-Bacon.fromArray([1,2,3])
+Bacon.fromArray([10, 20])
   .flatMap(function(x) {
-    return Bacon.fromArray([10, 20].map(y => x*y));
+    return Bacon.fromArray([1, 2, 3].map(y => x + y));
   })
-  .log() // logs 10 20 20 40 30 60
+  .log() // logs 11, 12, 13, 21, 22, 23
 ```
 
 It takes the first item, and then emits each element of the inner list, then
@@ -239,14 +253,14 @@ We can do a similar thing for the adding and editing actions.
 #### Combining the streams
 
 In the text above we were rendering the list that was fetched from the server
-by the initial request. We can do the server actions, but we don't update the
-view yet. To do this, we need to join the different streams. One effective way
-to do this are the *join patterns*.
+by the initial request. Now we can also do the server actions, but we don't
+update the view yet. To do this, we need to join the different streams. One
+effective way to do this are the *join patterns*.
 
 BaconJS has a useful feature to do this: `Bacon.when`. You start with an
 initial *seed*. It then pattern matches on the different streams, and each time
-one of the matched events have a new value, you combine the previous
-accumulator with the value from the stream, which is the output of the stream.
+one of the matched events has a new value, you combine the previous accumulator
+with the value from the stream, which will be the output of the stream.
 
 ```js
 const updatedTodoItems = Bacon.when(
@@ -264,17 +278,21 @@ const updatedTodoItems = Bacon.when(
 );
 ```
 
-Each time one of the streams fire, the old list is updated with the value on
+Each time one of the streams emit, the old list is updated with the value on
 the stream, depending which event it was, and eventually the new list is
 emitted.
 
-If we now subscribe to this stream, rather than the `initialList` stream in the
-`List` component, the To Do list will nicely match with the values that are
-saved on the server!
+If we subscribe to this `updatedTodoItems` stream in the `List` component,
+rather than the `initialList` stream, the To Do list will nicely match with the
+values that are saved on the server!
 
 Here we used a simple JavaScript array, but you could write your own classes
 that contain a list of the items, or use [immutable-js], which would be a
 really good idea!
+
+Graphically the system would look like this:
+
+![Streams overview](/assets/react-streams/overview.svg)
 
 ### Modifying Streams
 
@@ -305,6 +323,7 @@ streams we can create a structure where we can simply incorporate server
 updates, accumulate the application state over time and update the views.
 
 [Flux]: http://facebook.github.io/flux/
+[FRP]: https://github.com/ReactiveX/RxJava/pull/1036#issuecomment-40454410
 [RxJS]: https://github.com/Reactive-Extensions/RxJS/
 [BaconJS]: http://baconjs.github.io/
 [immutable-js]: http://facebook.github.io/immutable-js/
