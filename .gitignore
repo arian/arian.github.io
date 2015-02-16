@@ -5,3 +5,4 @@ _index/_home/twitterAPISecret.php
 db.json
 deploy_ftp
 ftp_login
+ftp_login.json
