@@ -16,6 +16,8 @@ missing in the Flux architecture:
 Of course there are ways to solve this, but perhaps reactive streams can help
 easing these shortcomings.
 
+<!-- more -->
+
 ## Reactive Streams
 
 The mathematical definition of Functional Reactive Programming (FPR), defines a
