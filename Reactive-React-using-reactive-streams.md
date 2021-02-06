@@ -1,3 +1,4 @@
+---
 title: "Reactive ReactJS: improving data flow using reactive streams"
 date: 2015-02-16 13:31:20
 tags: [reactjs, rx, baconjs, flux]

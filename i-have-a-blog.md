@@ -1,3 +1,4 @@
+---
 title: I have a Blog!
 date: 2013-01-25 20:15:54
 tags: editorial

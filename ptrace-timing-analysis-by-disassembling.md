@@ -1,3 +1,4 @@
+---
 title: Dynamic disassembling instructions with ptrace and udis86 for timing analysis
 date: 2013-05-25 18:40:54
 tags: [ptrace, udis86]

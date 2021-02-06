@@ -1,3 +1,4 @@
+---
 title: Setting up a MySQL database
 date: 2013-02-26 21:00:40
 tags: [mysql, reference]

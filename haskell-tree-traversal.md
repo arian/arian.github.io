@@ -1,3 +1,4 @@
+---
 title: Tree Traversal, Depth first and Breadth first in Haskell
 date: 2013-10-28 13:31:20
 tags: [haskell, algorithm, trees]
