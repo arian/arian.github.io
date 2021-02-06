@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hexo Configuration
 ## Docs: http://zespia.tw/hexo/docs/configure.html
 ## Source: https://github.com/tommy351/hexo/
@@ -89,3 +90,6 @@ marked:
   breaks: false
   smartLists: true
   smartypants: false
+=======
+theme: jekyll-theme-minimal
+>>>>>>> Set theme jekyll-theme-minimal
