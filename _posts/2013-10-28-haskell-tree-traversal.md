@@ -20,7 +20,7 @@ Depth First and Breadth First are two different ways of traversing a tree.
 It is best illustrated by the following images from Wikipedia:
 
 ### Depth First
-![Depth First](/assets/haskell-traversal/DF.png)
+![Depth First]({{ '/assets/haskell-traversal/DF.png' | relative_url }})
 
 <small>[source: wikipedia.org][df_wiki]</small>
 
@@ -35,7 +35,7 @@ function DFS(G) {
 ```
 
 ### Breadth First
-![Breadth First](/assets/haskell-traversal/BF.png)
+![Breadth First]({{ '/assets/haskell-traversal/BF.png' | relative_url }})
 
 <small>[source: wikipedia.org][bf_wiki]</small>
 

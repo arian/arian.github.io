@@ -295,7 +295,7 @@ really good idea!
 
 Graphically the system would look like this:
 
-![Streams overview](/assets/react-streams/overview.svg)
+![Streams overview]({{ '/assets/react-streams/overview.svg' | relative_url }})
 
 ### Modifying Streams
 
