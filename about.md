@@ -29,7 +29,7 @@ You can find me at:
 Your manager says, 'Our search isn’t working well—make it better.' So, you try semantic search, and for a few test queries, the results look great. But what does 'better' actually mean? And did we really improve search performance at scale with real production traffic?
 In this talk, I’ll explore different ways to measure search relevance and focus on offline testing from a software engineering perspective—providing practical methods to evaluate and improve search quality without just guessing.
 
-- [Elastic Meetup April 2025](www.meetup.com/elastic-nl/events/306773783/)
+- [Elastic Meetup April 2025](https://www.meetup.com/elastic-nl/events/306773783/)
 - [slides](https://docs.google.com/presentation/d/1CBmejsthST9ZShKvQvQ2AGOyJnm43YGqCRb-rd3snhA/edit?usp=sharing)
 
 ### ElasticON 2024: Exploring Re-Ranking Techniques for E-commerce Search
