@@ -24,10 +24,6 @@ field type.
 
 As nested properties we have a `name` and `weight` fields.
 
-Using a structure like `{"keyword1": 2.0, "keyword 2": 1.0}` would lead to
-[mapping
-explosion](https://www.elastic.co/docs/troubleshoot/elasticsearch/mapping-explosion).
-
 ```json
 PUT nested_weights_test
 {
@@ -45,6 +41,11 @@ PUT nested_weights_test
   }
 }
 ```
+
+Using a structure like `{"keyword1": 2.0, "keyword 2": 1.0}` would lead to
+[mapping
+explosion](https://www.elastic.co/docs/troubleshoot/elasticsearch/mapping-explosion),
+so that's not a scalable solution.
 
 ## Query
 
@@ -69,7 +70,7 @@ PUT nested_weights_test/_doc/2
 }
 ```
 
-And run the query:
+And run the query, for two query keywords `xyz` and `blue`.
 
 ```json
 POST nested_weights_test/_search

@@ -2,9 +2,20 @@ title: Arian Stolwijk Blog
 description: Personal Blog of Arian Stolwijk
 author: Arian
 
-theme: minima
+remote_theme: jekyll/minima
+plugins:
+  - jekyll-remote-theme
 
-show_excerpts: true
-twitter_username: astolwijk
-github_username:  arian
-rss:
+minima:
+  skin: auto # if you want it to switch with your system settings.
+  show_excerpts: true
+  social_links:
+    - title: GitHub 
+      icon: github 
+      url: "https://github.com/arian"
+    - title: "bsky"
+      icon: bluesky
+      url: "https://bsky.app/profile/astolwijk.bsky.social"
+    - title: "linkedin"
+      icon: linkedin
+      url: "https://www.linkedin.com/in/arian-stolwijk/"
