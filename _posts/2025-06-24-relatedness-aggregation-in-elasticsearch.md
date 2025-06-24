@@ -153,7 +153,7 @@ So what does this mean?
 
 The scores are different from the Solr documentation example. But we see
 Elasticsearch also supports other scoring functions. After trying them none of
-those get the same scores. Also the Solr scores are always nicely between 0 and 1.
+those get the same scores. Also the Solr scores are always nicely between -1 and 1.
 
 So how does Solr calculated the scores?
 
