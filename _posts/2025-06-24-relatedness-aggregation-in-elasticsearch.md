@@ -340,8 +340,13 @@ But the benefit is that we can follow along with examples and documentation that
 uses Solr, and try it out with Elasticsearch or OpenSearch, and verify we get
 the same results.
 
+### Update:
+
+Someone else already [did the same][aips-gh-issue], and posted it on the AIPS GitHub issue tracker.
+
 [skg]: https://arxiv.org/abs/1609.00464
 [doug-recsys]: https://opensourceconnections.com/blog/2016/09/09/better-recsys-elasticsearch/
 [solr-relatedness]: https://solr.apache.org/guide/solr/latest/query-guide/json-facet-api.html#relatedness-and-semantic-knowledge-graphs
 [es-significant-terms]: https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-significantterms-aggregation
 [gh-solr-relatedness]: https://github.com/apache/solr/blob/releases/solr/9.8.1/solr/core/src/java/org/apache/solr/search/facet/RelatednessAgg.java#L758-L773
+[aips-gh-issue]: https://github.com/treygrainger/ai-powered-search/issues/196
