@@ -25,8 +25,9 @@ I won't go into the details of what it all means. You can read:
   traversal and ranking of any relationship within a domain, 2016, Trey Grainger et al.][skg]
 - [High-Quality Recommendation Systems with Elasticsearch][doug-recsys]
 
-Here I'll just show you a beginning how we can achieve similar and the same
-things with Elasticsearch.
+Here I'll just show you a beginning how we can achieve something similar with
+the Elasticsearch `significant_terms` aggregation and the same scoring with a
+painless scoring script.
 
 ## The `significant_terms` aggregation
 
