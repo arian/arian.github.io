@@ -21,8 +21,14 @@ You can find me at:
 - [GitHub](https://github.com/arian)
 - [GitLab](https://gitlab.com/arian)
 
-
 ## Talks
+
+### Find & Mind: The Search and AI Meetup: LLM Query Understanding without the LLM latency using Semantic Caching
+
+Using LLMs in a classical search setup to understand the user's query or rerank the results are expensive and can be slow, especially for a search-as-you-type search experience. At Giftomatic we are building a search solution that uses LLMs/Machine Learning for query understanding, and make it fast using caching. In this talk I will describe the architecture, how we 'understand' the user queries, how we use the 'understanding' of the query, increase the cache hits and prevent inappropriate cache hits.
+
+- [Find & Mind: The Search and AI Meetup, September 2025](https://www.meetup.com/find-mind-the-search-and-ai-meetup/events/310581473)
+- [slides](https://docs.google.com/presentation/d/1QFM91dlK5BaviG393q_3263Z7Hcnkwom6ReQNfnXxx0/edit?usp=sharing)
 
 ### Elastic Meetup April 2025: Did we improve our search? Stop guessing - measure relevance like an engineer
 
@@ -33,6 +39,7 @@ In this talk, I’ll explore different ways to measure search relevance and focu
 - [slides](https://docs.google.com/presentation/d/1CBmejsthST9ZShKvQvQ2AGOyJnm43YGqCRb-rd3snhA/edit?usp=sharing)
 
 ### ElasticON 2024: Exploring Re-Ranking Techniques for E-commerce Search
+
 In this session, we'll share insights into optimizing search and recommendation systems for better user experiences and business outcomes. We'll explore advanced strategies, including hybrid search techniques like Reciprocal Rank Fusion (RRF), reranking with cosine similarity using embeddings, and leveraging cutting-edge LLMs like Cohere, OpenAI, or Huggingface models. Additionally, we'll discuss content-based diversification through Maximal Marginal Relevance (MMR) to minimize redundancy and enhance user satisfaction. Join us to see best practices in action, along with key do's and don'ts for maximizing the impact of these approaches.
 
 - [ElasticON 2024](https://www.elastic.co/events/elasticon/amsterdam)
